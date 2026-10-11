@@ -315,6 +315,246 @@ footer.site{
   100%{opacity:0;transform:translate(-50%,-50%) scale(.35) translateY(16px);}
 }
 
+  /* ================= 开场动画：巨眼 ================= */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:99997;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  animation: introFadeOut 1.6s 5.6s ease forwards;
+}
+@keyframes introFadeOut{
+  0%{ opacity:1; visibility:visible; }
+  70%{ opacity:1; }
+  100%{ opacity:0; visibility:hidden; pointer-events:none; }
+}
+.eye-big{
+  position:relative;
+  width:min(82vmin, 780px);
+  aspect-ratio:16/10;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 48%,
+      #f4ecff 0%, #e0d0f0 30%, #c9b6e0 55%, #8a6aa8 78%, #3a1a55 100%);
+  box-shadow:
+    inset 0 0 120px rgba(30,0,50,.95),
+    inset 0 0 40px rgba(255,120,160,.35),
+    0 0 100px rgba(120,20,60,.6),
+    0 0 240px rgba(180,20,80,.35);
+  overflow:hidden;
+  animation: eyeShiver 7s ease-in-out infinite;
+}
+@keyframes eyeShiver{
+  0%,100%{ transform: scale(1) translate(0,0); }
+  12%{ transform: scale(1.008) translate(-2px,1px); }
+  14%{ transform: scale(1.005) translate(2px,-1px); }
+  16%{ transform: scale(1.01) translate(0,0); }
+  50%{ transform: scale(1.012) translate(1px,-3px); }
+  80%{ transform: scale(1.006) translate(-1px,2px); }
+}
+.eye-veins{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  z-index:5;
+  pointer-events:none;
+  opacity:.55;
+  mix-blend-mode:multiply;
+  animation: veinsPulse 4s ease-in-out infinite;
+}
+.eye-veins path{
+  stroke:#8a0518;
+  stroke-width:1.1;
+  fill:none;
+  stroke-linecap:round;
+  opacity:.75;
+}
+.eye-veins path:nth-child(2n){ stroke-width:0.7; opacity:.55; }
+.eye-veins path:nth-child(3n){ stroke-width:1.5; opacity:.85; }
+@keyframes veinsPulse{
+  0%,100%{ opacity:.5; }
+  50%{ opacity:.8; }
+}
+.eye-iris{
+  position:absolute;
+  left:50%; top:50%;
+  width:60%;
+  aspect-ratio:1;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  overflow:hidden;
+  box-shadow:
+    inset 0 0 70px rgba(0,0,0,.95),
+    inset 0 0 24px rgba(255,60,90,.5),
+    0 0 70px rgba(180,20,50,.8),
+    0 0 160px rgba(120,0,40,.55);
+  animation: irisLook 6s ease-in-out infinite alternate;
+  z-index:4;
+}
+@keyframes irisLook{
+  0%{ transform: translate(-50%,-50%) translate(0,0); }
+  35%{ transform: translate(-50%,-50%) translate(1.8%, .9%); }
+  65%{ transform: translate(-50%,-50%) translate(-2%, -.7%); }
+  100%{ transform: translate(-50%,-50%) translate(.8%, 1.1%); }
+}
+.iris-texture{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+}
+.eye-pupil{
+  position:absolute;
+  left:50%; top:50%;
+  width:42%;
+  aspect-ratio:1;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 50% 50%, #000 0%, #05000a 70%, #12001a 100%);
+  box-shadow: inset 0 0 40px rgba(0,0,0,1), 0 0 50px rgba(0,0,0,1);
+  animation: pupilDilate 8s ease-in-out infinite;
+}
+@keyframes pupilDilate{
+  0%{ transform: translate(-50%,-50%) scale(1); }
+  45%{ transform: translate(-50%,-50%) scale(.72); }
+  55%{ transform: translate(-50%,-50%) scale(.78); }
+  70%{ transform: translate(-50%,-50%) scale(.55); }
+  100%{ transform: translate(-50%,-50%) scale(1); }
+}
+.eye-shine{
+  position:absolute;
+  left:16%; top:10%;
+  width:30%; height:24%;
+  border-radius:50%;
+  background:radial-gradient(circle, #fff 0%, rgba(255,220,235,.7) 45%, transparent 100%);
+  filter: blur(6px);
+  animation: shinePulse 2.4s ease-in-out infinite alternate;
+}
+.eye-shine2{
+  position:absolute;
+  left:48%; top:52%;
+  width:10%; height:8%;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.95) 0%, transparent 100%);
+  filter: blur(4px);
+}
+@keyframes shinePulse{
+  0%{ opacity:.7; transform: scale(1); }
+  100%{ opacity:1; transform: scale(1.15); }
+}
+.lid{
+  position:absolute;
+  left:-6%; right:-6%;
+  height:56%;
+  z-index:10;
+  pointer-events:none;
+}
+.lid-top{
+  top:-2%;
+  background:
+    linear-gradient(to bottom,
+      #1a0410 0%, #2a0818 12%, #4a1028 30%,
+      #6a1838 55%, #3a0a1a 85%, #12020a 100%);
+  box-shadow: 0 6px 24px rgba(0,0,0,.85);
+  animation: lidTopAnim 7.2s cubic-bezier(.42,0,.18,1) forwards;
+}
+.lid-bottom{
+  bottom:-2%;
+  background:
+    linear-gradient(to top,
+      #1a0410 0%, #2a0818 12%, #4a1028 30%,
+      #6a1838 55%, #3a0a1a 85%, #12020a 100%);
+  box-shadow: 0 -6px 24px rgba(0,0,0,.85);
+  animation: lidBottomAnim 7.2s cubic-bezier(.42,0,.18,1) forwards;
+}
+@keyframes lidTopAnim{
+  0%   { transform: translateY(0); }
+  8%   { transform: translateY(-18%); }
+  10%  { transform: translateY(-8%); }
+  14%  { transform: translateY(-22%); }
+  55%  { transform: translateY(-102%); }
+  72%  { transform: translateY(-102%); }
+  73%  { transform: translateY(-40%); }
+  74%  { transform: translateY(0); }
+  76%  { transform: translateY(-102%); }
+  86%  { transform: translateY(-102%); }
+  88%  { transform: translateY(-55%); }
+  90%  { transform: translateY(-102%); }
+  100% { transform: translateY(-102%); }
+}
+@keyframes lidBottomAnim{
+  0%   { transform: translateY(0); }
+  8%   { transform: translateY(18%); }
+  10%  { transform: translateY(8%); }
+  14%  { transform: translateY(22%); }
+  55%  { transform: translateY(102%); }
+  72%  { transform: translateY(102%); }
+  73%  { transform: translateY(40%); }
+  74%  { transform: translateY(0); }
+  76%  { transform: translateY(102%); }
+  86%  { transform: translateY(102%); }
+  88%  { transform: translateY(55%); }
+  90%  { transform: translateY(102%); }
+  100% { transform: translateY(102%); }
+}
+.intro-title{
+  position:absolute;
+  bottom:13%;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:"MS PGothic","SimSun",monospace;
+  font-size:clamp(14px, 2vw, 20px);
+  letter-spacing:.5em;
+  color:#c9a0ff;
+  text-shadow:0 0 16px #ff3ca6, 0 0 34px #b060ff, 0 0 60px #ff0040;
+  opacity:0;
+  animation: introTitleIn 2s 2.6s ease forwards;
+  pointer-events:none;
+  white-space:nowrap;
+}
+@keyframes introTitleIn{
+  0%{ opacity:0; letter-spacing:1.2em; filter: blur(14px); }
+  60%{ opacity:.6; filter: blur(4px); }
+  100%{ opacity:1; letter-spacing:.5em; filter: blur(0); }
+}
+.intro-skip{
+  position:absolute;
+  right:22px; bottom:22px;
+  font-family:"MS PGothic","SimSun",monospace;
+  font-size:12px;
+  letter-spacing:.2em;
+  color:#4a3a5a;
+  cursor:pointer;
+  padding:6px 14px;
+  border:1px solid #2a1a3a;
+  background:rgba(0,0,0,.6);
+  transition: all .3s;
+  z-index:20;
+  user-select:none;
+}
+.intro-skip:hover{
+  color:#ff6b90;
+  border-color:#ff6b90;
+  background:rgba(60,0,20,.65);
+  text-shadow:0 0 12px #ff0040;
+}
+#intro::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:15;
+  background:
+    radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,.85) 100%),
+    radial-gradient(ellipse at center, transparent 50%, rgba(80,0,20,.35) 100%);
+  animation: redPulse 3.6s ease-in-out infinite;
+}
+@keyframes redPulse{
+  0%,100%{ opacity:.85; }
+  50%{ opacity:1; }
+}
+
 /* ================= 响应式 ================= */
 @media (max-width:620px){
   .head-row{flex-direction:column;align-items:flex-start;}
@@ -331,6 +571,63 @@ footer.site{
 </head>
 <body>
 
+<!-- ================= 开场动画：巨眼 ================= -->
+<div id="intro">
+  <div class="eye-big">
+    <svg class="eye-veins" viewBox="0 0 400 250" preserveAspectRatio="none">
+      <path d="M30 130 Q120 110 170 145" />
+      <path d="M15 100 Q110 95 165 130" />
+      <path d="M370 120 Q280 105 235 140" />
+      <path d="M388 160 Q290 150 240 165" />
+      <path d="M40 175 Q130 165 175 160" />
+      <path d="M360 80 Q280 78 230 110" />
+      <path d="M60 60 Q140 80 180 115" />
+      <path d="M340 190 Q270 185 225 170" />
+    </svg>
+
+    <div class="eye-iris">
+      <svg class="iris-texture" viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="irisG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a0208"/>
+            <stop offset="18%" stop-color="#3a0a12"/>
+            <stop offset="42%" stop-color="#7a1020"/>
+            <stop offset="62%" stop-color="#b03040"/>
+            <stop offset="80%" stop-color="#5a0e1a"/>
+            <stop offset="100%" stop-color="#180206"/>
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="98" fill="url(#irisG)"/>
+        <g stroke="#ff5060" stroke-width="0.6" opacity="0.5" fill="none">
+          <path d="M100 100 L100 2"/>
+          <path d="M100 100 L145 8"/>
+          <path d="M100 100 L55 8"/>
+          <path d="M100 100 L180 40"/>
+          <path d="M100 100 L20 40"/>
+          <path d="M100 100 L195 100"/>
+          <path d="M100 100 L5 100"/>
+          <path d="M100 100 L180 160"/>
+          <path d="M100 100 L20 160"/>
+          <path d="M100 100 L145 192"/>
+          <path d="M100 100 L55 192"/>
+          <path d="M100 100 L198 100"/>
+        </g>
+      </svg>
+      <div class="eye-pupil"></div>
+      <div class="eye-shine"></div>
+      <div class="eye-shine2"></div>
+    </div>
+
+    <div class="lid lid-top"></div>
+    <div class="lid lid-bottom"></div>
+  </div>
+
+  <div class="intro-title">マンボウ の 夢</div>
+  <div class="intro-skip" id="introSkip">点击跳过 ／ SKIP</div>
+</div>
+
+<div id="bg"></div>
+...
 <div id="bg"></div>
 <div class="orb o1"></div>
 <div class="orb o2"></div>
@@ -626,6 +923,36 @@ footer.site{
     setTimeout(function(){ title.textContent = real; }, 110);
   }, 6500);
 })();
+
+/* ================= 开场动画控制 ================= */
+(function(){
+  var intro = document.getElementById('intro');
+  var skip  = document.getElementById('introSkip');
+  if(!intro) return;
+
+  var closed = false;
+  function closeIntro(){
+    if(closed) return;
+    closed = true;
+    intro.style.animation = 'none';
+    intro.style.transition = 'opacity .55s ease';
+    intro.style.opacity = '0';
+    intro.style.visibility = 'hidden';
+    setTimeout(function(){ intro.style.display = 'none'; }, 600);
+  }
+
+  if(skip) skip.addEventListener('click', function(e){
+    e.stopPropagation();
+    closeIntro();
+  });
+  intro.addEventListener('click', closeIntro);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeIntro();
+  });
+
+  setTimeout(closeIntro, 7200);
+})();
+
 </script>
 </body>
 </html>
