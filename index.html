@@ -903,7 +903,7 @@ footer.site{
             <tr><th>趣味 / 兴趣</th><td>钻研自己喜欢的东西、写写代码或者文章~...以及养oc！</td></tr>
             <tr><th>好き / 喜欢</th><td>甜食、交友</td></tr>
             <tr><th>最近在听</th><td>クソゲー実況プレイ（そらる的版本，当然）</td></tr>
-            <tr><th>状態 / 状态</th><td><span class="blink">夢の中で、好きな世界を作っているよ ✦ 快被现实折腾死了</span></td></tr>
+            <tr><th>状態 / 状态</th><td><span class="blink">✦ 快被现实折腾死了 ✦</span></td></tr>
           </table>
  </div>
           <p class="intro-text">
@@ -1316,19 +1316,36 @@ var ocData = {
     },
     personality: '孤僻',
     story: '背景故事。',
-    tags: ['OC', '病模']
+    schedule: '行程。',
+    tags: ['病模oc']
   },
   oc3: {
-    name: '角色名 ③',
-    alias: '别名',
-    info: {
-      '年齢 / 年龄': '—',
-      '種族 / 种族': '—'
-    },
-    personality: '性格描述。',
-    story: '背景故事。',
-    images: [ 'personalwebsite/oc3-1.jpg' ],
-    tags: ['OC']
+    name: '歌川 弥子（Hiroko Utagawa）',    
+alias: '注定悲剧的女孩',    
+avatar: 'personalwebsite/oc/hiroko.png',    
+info: {      
+'角色': '学生',      
+'年齢 / 年龄': '17岁',      
+'クラス / 班级': '2-1',      
+'身長 / 身高': '168cm',      
+'力 / 力量': '弱',      
+'名声 / 声誉': '85',      
+'登场': '第一周'    
+},    
+personality: '热情外向',    
+story: '除非由玩家定制，否则Hiroko将穿着默认制服。
+Hiroko有一头深棕色的长发，她的后发用一个大的黑色蝴蝶结扎了起来，她的鬓发垂落在肩上。她的眼睛是白色的。她是名副其实的校园女神，总是以笑脸对着每一位同学，声誉好得不可思议。
+Hiroko的特点是手机控，如果目睹Ayano杀人，她会和其他手机控学生一样，拍照，并且逃离学校报警。如果Ayano用相机对准Hiroko，她会很乐意摆姿势拍照。
+Hiroko是一名“绝对悲剧的女孩”，在她小的时候，她的妹妹Shiori并未出生时，她的母亲抱着她经过了一位占卜师，那位占卜师告诉她与她的母亲，Hiroko是一位“注定悲剧的女孩”，她将会英年早逝，并且将这份不幸延续到她的家人身上。
+她的父母并不把这放在心上，而Hiroko却悄悄地记住了占卜师所说的话，在她健康长大到16岁之后，她便被送进了Akademi学院。
+Hiroko并不和自己的妹妹关系很好，因为Shiori并不喜欢交流。
+她对神秘社所实行的仪式很感兴趣，但并不想加入社团。
+
+“这很荒谬……但是我很好奇那位占卜师所言是否真实。”',   
+schedule: 'Hiroko将会在早上7:05进入学校场地，并在7:10前往储物柜将户外鞋换成室内鞋。随后她会先前往神秘社旁观神秘社成员的讨论，之后将直接前往三楼美术室门口玩手机。
+早上8:00，Hiroko前往2-1教室，8:30她开始上课。下午1点她离开教室，前往天台吃午饭。
+她在1:30返回1-2教室，在下午3:30至4:00之间参加清洁时间。在那之后她会在操场旁边看手机直到一天结束。',
+tags: ['病模oc']
   }
 };
 
@@ -1413,6 +1430,10 @@ var ocData = {
 
 if(d.ability){
   html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【能力】</strong><br>' + d.ability.replace(/</g,'&lt;') + '</div>';
+}
+
+    if(d.schedule){  
+html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【行程】</strong><br>' + d.schedule.replace(/</g,'&lt;') + '</div>';
 }
 
     if(d.images && d.images.length){
