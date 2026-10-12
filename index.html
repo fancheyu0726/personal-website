@@ -1291,7 +1291,10 @@ var ocData = {
   槿辻最后在小屋内因熬夜猝死了，被发现时她已浑身腐烂散发着尸臭，桌上的手稿被腐烂的尸水打湿。人们将她埋葬于她居住的公墓中的一个边缘的墓地里，她甚至不配拥有一副棺材——光是她手里仅有的一些钱都已经被全部用于购买这块无人问津墓地而花光了。
   但槿辻的灵魂却没有因此受到影响，她手持死亡世界的火焰点亮的油灯顺着墓室往下、再往下，走到了一片花海。直到有一个人将她转化为一个可以通过投影显现于世的虚像，她才从那个世界短暂地回归了。
 `,
-  power: '幻影的枪——将手指比作枪状，正常人看来像小孩子过家家一般，但是藉由亡灵的力量放大之后变得极具杀伤力。',
+  ability: `【普攻】幻影的枪——将手指比作枪状，正常人看来像小孩子过家家一般，但是藉由亡灵的力量放大之后变得极具杀伤力。
+  【天赋】虚影：物理攻击无效。因为是超自然+科技产物，因此常规的神秘学攻击也无法彻底清除她。
+  【还有更多...根据世界观而定】
+  `,
     images: [
       'personalwebsite/jinshi.png',
       'personalwebsite/jinshi2.png'
@@ -1404,8 +1407,8 @@ var ocData = {
       html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【背景】</strong><br>' + d.story.replace(/</g,'&lt;') + '</div>';
     }
 
-    if(d.power){      
-html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【能力】</strong><br>' + d.story.replace(/</g,'&lt;') + '</div>';    
+if(d.ability){
+  html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【能力】</strong><br>' + d.ability.replace(/</g,'&lt;') + '</div>';
 }
 
     if(d.images && d.images.length){
