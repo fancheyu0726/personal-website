@@ -768,6 +768,50 @@ footer.site{
   color:#ded4f2;
 }
 
+  /* ================= 详情展开 ================= */
+.m-details{
+  margin:14px 0;
+  border:1px solid #5a4488;
+  background:rgba(12,5,26,.7);
+  overflow:hidden;
+}
+.m-details summary{
+  padding:9px 14px;
+  cursor:pointer;
+  color:#ff9ed6;
+  letter-spacing:.14em;
+  font-size:12.5px;
+  list-style:none;
+  position:relative;
+  transition:background .25s, color .25s, text-shadow .25s;
+  user-select:none;
+}
+.m-details summary::-webkit-details-marker{ display:none; }
+.m-details summary::before{
+  content:'▸';
+  display:inline-block;
+  margin-right:8px;
+  color:#8fd8ff;
+  transition:transform .3s ease;
+}
+.m-details[open] summary::before{
+  transform:rotate(90deg);
+  color:#ff9ed6;
+}
+.m-details summary:hover{
+  background:rgba(255,142,203,.12);
+  color:#ffd9f2;
+  text-shadow:0 0 10px #ff3ca6;
+}
+.m-details-body{
+  padding:12px 16px 16px;
+  font-size:13px;
+  line-height:2;
+  color:#cdc2e6;
+  white-space:pre-wrap;
+  border-top:1px dashed #4a3a6b;
+}
+
 @media (max-width:520px){
   .modal-box{ padding:16px 14px 20px; }
   .modal-content h2{ font-size:17px; }
@@ -1316,8 +1360,16 @@ var ocData = {
       '登场': '第一周'
     },
     personality: '孤僻',
-    story: `背景故事。`,
-    schedule: `行程。`,
+    story: `Shiori是众县立汐见学院的众多学生之一。
+除非由玩家定制，否则Shiori将穿着默认制服。
+Shiori有一头深棕色且额发带浅棕色挑染的短发和一双深灰色的眼睛，眼睛下方有黑眼圈。她阴沉、寡言，她喜爱悬疑小说和恐怖传说，她对各种鬼怪传说校园传说以及恶魔仪式十分感兴趣，因此她加入了神秘社。她并不喜欢拍照，留有她人脸的照片少之又少，甚至自拍也没几个。手机相册里包含着她的脸的照片只有证件照。
+Shiori不常与人交流，与其他神秘社的成员不同的是，她的风评会比其他人更低——因为她总是在没有人和她聊天的时候自己旁若无人地说话，好似旁边真的有人在和她聊天一样。但其实她只是喜欢自言自语。
+她的人生比起姐姐Hiroko的来说完全没有什么特殊性。她会长大，然后找到一份工作，安稳度过一生……但是她和姐姐却都很喜欢神秘学，这也是她们作为姐妹的相同点。据说Shiori本来想加入学校的文学社，但是汐见学院并没有这个社团，因此转而加入神秘社。`,
+    schedule: `Shiori将会在早上7:05进入学校场地，并在7:10前往储物柜将户外鞋换成室内鞋。在此之后，她会前往图书馆看书直到8:20。8:30她开始上课。
+下午1点她离开教室，在天外的某个角落吃午餐。
+她在1:30返回1-2教室，在下午5点后她会去参加神秘社活动，直到一天结束。
+如果社团解散，下午的社团活动将会被替换为前往校园各地画素描。
+`,
     tags: ['病模oc']
   },
   oc3: {
@@ -1334,15 +1386,14 @@ info: {
 '登场': '第一周'    
 },    
 personality: '热情外向',    
-story: `除非由玩家定制，否则Hiroko将穿着默认制服。
-Hiroko有一头深棕色的长发，她的后发用一个大的黑色蝴蝶结扎了起来，她的鬓发垂落在肩上。她的眼睛是白色的。她是名副其实的校园女神，总是以笑脸对着每一位同学，声誉好得不可思议。
-Hiroko的特点是手机控，如果目睹Ayano杀人，她会和其他手机控学生一样，拍照，并且逃离学校报警。如果Ayano用相机对准Hiroko，她会很乐意摆姿势拍照。
+story: `Hiroko是众县立汐见学院的众多学生之一。
+Hiroko有一头深棕色的长发，她的后发用一个大的黑色蝴蝶结扎了起来，她的鬓发垂落在肩上。她的眼睛是白色的。她是名副其实的校园女神，总是以笑脸对着每一位同学，声誉好得不可思议。与她的妹妹Shiori Utagawa完全不一样的是，她光芒四射，吸引了许多追求者。
 Hiroko是一名“绝对悲剧的女孩”，在她小的时候，她的妹妹Shiori并未出生时，她的母亲抱着她经过了一位占卜师，那位占卜师告诉她与她的母亲，Hiroko是一位“注定悲剧的女孩”，她将会英年早逝，并且将这份不幸延续到她的家人身上。
-她的父母并不把这放在心上，而Hiroko却悄悄地记住了占卜师所说的话，在她健康长大到16岁之后，她便被送进了Akademi学院。
+她的父母并不把这放在心上，而Hiroko却悄悄地记住了占卜师所说的话，在她健康长大到16岁之后，她便被送进了汐见学院。
 Hiroko并不和自己的妹妹关系很好，因为Shiori并不喜欢交流。
-她对神秘社所实行的仪式很感兴趣，但并不想加入社团。
-
-“这很荒谬……但是我很好奇那位占卜师所言是否真实。”`, 
+汐见学院的神秘社里包含着许许多多对古老怪谈、恶魔仪式感兴趣的学生，她的妹妹Shiori也不例外。虽然他们总是被称作“汐见学院里的怪人”，但是他们毫不在意——也许能勾起他们兴趣的也只有汐见学院的校园传说之类的事情。
+Hiroko并不想参加社团，她更喜欢放学后直接回家——也许在路上再来一块苹果派或水果塔。 但是她很喜欢听神秘社的成员聊天——关于时空乱流和超自然存在的事。“我知道那些听起来完全就是无稽之谈。但是我真的很好奇那位占卜师所言是否真实…”
+【详情】`, 
 schedule: `Hiroko将会在早上7:05进入学校场地，并在7:10前往储物柜将户外鞋换成室内鞋。随后她会先前往神秘社旁观神秘社成员的讨论，之后将直接前往三楼美术室门口玩手机。
 早上8:00，Hiroko前往2-1教室，8:30她开始上课。下午1点她离开教室，前往天台吃午饭。
 她在1:30返回1-2教室，在下午3:30至4:00之间参加清洁时间。在那之后她会在操场旁边看手机直到一天结束。`,
@@ -1398,6 +1449,19 @@ tags: ['病模oc']
     return html;
   }
 
+  /* ---------- 解析 story 里的【详情】标记 ---------- */
+function splitStory(text){
+  var marker = '【详情】';
+  var idx = text.indexOf(marker);
+  if(idx === -1){
+    return { main: text, detail: null };
+  }
+  return {
+    main: text.slice(0, idx).trim(),
+    detail: text.slice(idx + marker.length).trim()
+  };
+}
+
   /* ---------- 渲染 OC 详情 ---------- */
   function renderOC(id){
     var d = ocData[id];
@@ -1425,9 +1489,17 @@ tags: ['病模oc']
     if(d.personality){
       html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【性格】</strong><br>' + d.personality.replace(/</g,'&lt;') + '</div>';
     }
+
     if(d.story){
-      html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【背景】</strong><br>' + d.story.replace(/</g,'&lt;') + '</div>';
-    }
+  var s = splitStory(d.story);
+  html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【背景】</strong><br>' + s.main + '</div>';
+  if(s.detail){
+    html += '<details class="m-details">';
+    html += '<summary>▸ ...</summary>';
+    html += '<div class="m-details-body">' + s.detail + '</div>';
+    html += '</details>';
+  }
+}
 
 if(d.ability){
   html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【能力】</strong><br>' + d.ability.replace(/</g,'&lt;') + '</div>';
