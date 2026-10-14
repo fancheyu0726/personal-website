@@ -1430,14 +1430,14 @@ info: {
   点击下方查看星露谷模组设定↓
   【详情】星露谷模组设定
   莫菈·班西是鹈鹕镇的一位村民。她是不可结婚的角色之一。她年龄未知，居住在秘密森林深处，在报丧女妖甜品店营业。在你和法师的好感达到4心后，法师会向你发送一封信件，然后你就可以前往秘密森林深处，并发现莫菈和她的甜品店。莫菈的听力缺失，但她可以“听见”你说话。据她所说，这是独属于班西家族的魔力。
-
+【/详情】
 点击下方查看本体设定↓
 【详情】本体设定
 没人知道她的来由，只说一位贵妇人包揽了城市公墓的守墓员的活。她只是默默地为那些无人吊唁的墓碑清扫、献花，她所做的一切，包括她本身，几乎就像一阵风吹过。
 莫菈·班西衣着体面，身上的长裙和围裙常年保持着干净与整洁。她头顶带着一条蓝色格纹头巾。她看上去就像是一位普通的农妇，但不凡的谈吐和衣着又处处提醒着人们她的出身并不贫穷。
 自从城市公墓被曝一起少女死亡事件，本来就没有多少扫墓者的公墓更加人迹罕至。但莫菈住进了那间守墓人小屋，她为那些几乎无人纪念的逝者清扫墓碑、献上花束。
 传闻这位贵妇人的身上常年萦绕着鼠尾草、奶油和茶的香气。有人推测她从城市公墓北边的森林而来，还开过一家甜品店。
-  
+  【/详情】
   `,
    schedule:`
    下方为星露谷模组设定↓
@@ -1469,6 +1469,7 @@ info: {
 7:30	位于报丧女妖甜品店，开始营业
 16:00	出门前往星之果实餐吧
 20:00	回家休息
+【/详情】
 `,
   tags: ['星露谷模组', '原创oc', '死非终焉']
 }
@@ -1513,16 +1514,8 @@ info: {
       });
       html += '</div>';
     }
-if(d.desc){
-  var s = splitStory(d.desc);
-  html += '<div class="m-desc">' + s.main + '</div>';
-  s.details.forEach(function(item){
-    html += '<details class="m-details">';
-    html += '<summary>▸ ' + item.title + '</summary>';
-    html += '<div class="m-details-body">' + item.content + '</div>';
-    html += '</details>';
-  });
-}
+if(d.desc) html += renderField('', d.desc);
+    
     if(d.tags && d.tags.length){
       html += '<div class="m-tags">';
       d.tags.forEach(function(t){ html += '<span>#' + t + '</span>'; });
@@ -1531,28 +1524,80 @@ if(d.desc){
     return html;
   }
 
-  /* ---------- 解析 story 里的【详情】标记（支持多个） ---------- */
-function splitStory(text){
-  var parts = text.split('【详情】');
-  var result = {
-    main: parts[0].trim(),
-    details: []
-  };
-  for(var i = 1; i < parts.length; i++){
-    var block = parts[i].trim();
-    if(!block) continue;
-    var lines = block.split('\n');
-    var title, content;
-    if(lines.length === 1){
-      title = '展开详情';
-      content = block;
-    }else{
-      title = lines[0].trim();
-      content = lines.slice(1).join('\n').trim();
+/* ---------- 解析富文本：【详情】...【/详情】 与正文交错 ---------- */
+function parseRichText(text){
+  var tokens = text.split(/(【详情】|【\/详情】)/);
+  var blocks = [];
+  var currentDetail = null;
+
+  for(var i = 0; i < tokens.length; i++){
+    var t = tokens[i];
+
+    if(t === '【详情】'){
+      if(currentDetail){ blocks.push(currentDetail); }
+      currentDetail = { type: 'detail', title: '展开详情', content: '' };
+      continue;
     }
-    result.details.push({ title: title, content: content });
+
+    if(t === '【/详情】'){
+      if(currentDetail){
+        blocks.push(currentDetail);
+        currentDetail = null;
+      }
+      continue;
+    }
+
+    if(!t) continue;
+
+    if(currentDetail){
+      var block = t.trim();
+      if(!block) continue;
+      var lines = block.split('\n');
+      if(lines.length > 1){
+        currentDetail.title = lines[0].trim();
+        currentDetail.content = lines.slice(1).join('\n').trim();
+      }else{
+        currentDetail.content = block;
+      }
+    }else{
+      var textBlock = t.trim();
+      if(textBlock){ blocks.push({ type: 'text', content: textBlock }); }
+    }
   }
-  return result;
+
+  if(currentDetail){ blocks.push(currentDetail); }
+  return blocks;
+}
+
+/* ---------- 通用渲染：正文 + 折叠块交错 ---------- */
+function renderField(label, text, small){
+  if(!text) return '';
+  var blocks = parseRichText(text);
+  var html = '';
+
+  if(label){
+    html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">' + label + '</strong></div>';
+  }
+
+  blocks.forEach(function(b){
+    if(b.type === 'text'){
+      html += '<div class="m-desc">' + b.content + '</div>';
+    }else{
+      if(small){
+        html += '<details class="m-details" style="margin:6px 0;">';
+        html += '<summary style="padding:4px 8px;font-size:11px;">▸ ' + b.title + '</summary>';
+        html += '<div class="m-details-body" style="padding:8px 10px;font-size:12px;">' + b.content + '</div>';
+        html += '</details>';
+      }else{
+        html += '<details class="m-details">';
+        html += '<summary>▸ ' + b.title + '</summary>';
+        html += '<div class="m-details-body">' + b.content + '</div>';
+        html += '</details>';
+      }
+    }
+  });
+
+  return html;
 }
 
   /* ---------- 渲染 OC 详情 ---------- */
@@ -1569,46 +1614,20 @@ function splitStory(text){
       html += '</div>';
     }
 
-    if(d.info){
-      html += '<table class="m-info">';
-      for(var k in d.info){
-        if(d.info.hasOwnProperty(k)){
-          html += '<tr><th>' + k + '</th><td>' + d.info[k] + '</td></tr>';
-        }
-      }
-      html += '</table>';
+   if(d.info){
+  html += '<table class="m-info">';
+  for(var k in d.info){
+    if(d.info.hasOwnProperty(k)){
+      html += '<tr><th>' + k + '</th><td>' + renderField('', d.info[k], true) + '</td></tr>';
     }
-
-    if(d.personality){
-      html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【性格】</strong><br>' + d.personality.replace(/</g,'&lt;') + '</div>';
-    }
-
-if(d.story){
-  var s = splitStory(d.story);
-  html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【背景】</strong><br>' + s.main + '</div>';
-  s.details.forEach(function(item){
-    html += '<details class="m-details">';
-    html += '<summary>▸ ' + item.title + '</summary>';
-    html += '<div class="m-details-body">' + item.content + '</div>';
-    html += '</details>';
-  });
+  }
+  html += '</table>';
 }
 
-if(d.ability){
-  html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【能力】</strong><br>' + d.ability.replace(/</g,'&lt;') + '</div>';
-}
-
-    if(d.schedule){  
-html += '<div class="m-desc"><strong style="color:#9fd8ff;font-weight:normal;">【行程】</strong><br>' + d.schedule.replace(/</g,'&lt;') + '</div>';
-}
-
-    if(d.images && d.images.length){
-      html += '<div class="m-gallery">';
-      d.images.forEach(function(src){
-        html += '<img src="' + src + '" alt="' + d.name + '" loading="lazy">';
-      });
-      html += '</div>';
-    }
+if(d.personality) html += renderField('【性格】', d.personality);
+if(d.story)       html += renderField('【背景】', d.story);
+if(d.ability)     html += renderField('【能力】', d.ability);
+if(d.schedule)    html += renderField('【行程】', d.schedule);
 
     if(d.tags && d.tags.length){
       html += '<div class="m-tags">';
