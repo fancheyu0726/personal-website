@@ -1445,7 +1445,7 @@ info: {
 在重建社区中心后，莫菈每周四12:30将会前往社区中心，你可以通过她在柜台上放置的钱箱进行购买。
 在星期天，莫菈不会营业。甜品店会在星期天上锁，届时你将无法进入甜品店。
 下面显示的是莫菈的行程表，从上到下优先级逐次下降。
-【详情】
+【详情】日程表
 沙漠节：
 12:00	乘坐巴士前往沙漠参加沙漠节
 0:00	离开摊位并乘坐巴士返回星露谷
@@ -1585,12 +1585,12 @@ function renderField(label, text, small){
     }else{
       if(small){
         html += '<details class="m-details" style="margin:6px 0;">';
-        html += '<summary style="padding:4px 8px;font-size:11px;">▸ ' + b.title + '</summary>';
+       html += '<summary style="padding:4px 8px;font-size:11px;">' + b.title + '</summary>';
         html += '<div class="m-details-body" style="padding:8px 10px;font-size:12px;">' + b.content + '</div>';
         html += '</details>';
       }else{
         html += '<details class="m-details">';
-        html += '<summary>▸ ' + b.title + '</summary>';
+        html += '<summary>' + b.title + '</summary>';
         html += '<div class="m-details-body">' + b.content + '</div>';
         html += '</details>';
       }
