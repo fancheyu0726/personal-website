@@ -817,6 +817,50 @@ footer.site{
   .modal-content h2{ font-size:17px; }
 }
 
+/* ================= 回到顶部 ================= */
+#backTop{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:9996;
+
+  width:44px;
+  height:44px;
+  font-family:inherit;
+  font-size:20px;
+  line-height:1;
+  color:#e6dcff;
+
+  border:2px outset #7b5fb0;
+  background:linear-gradient(#2a1a4a,#150a2c);
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(120,60,200,.4);
+  transition:opacity .35s, transform .35s, background .25s, box-shadow .25s;
+
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(12px);
+}
+#backTop.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+#backTop:hover{
+  background:linear-gradient(#ff8ecb,#b0409a);
+  color:#180020;
+  border-style:inset;
+  box-shadow:0 0 26px rgba(255,142,203,.7);
+}
+#backTop:active{
+  transform:translateY(2px) scale(.96);
+}
+
+/* 手机端 */
+@media (max-width:620px){
+  #backTop{ right:14px; bottom:14px; width:38px; height:38px; font-size:17px; }
+}
+  
 /* ================= 响应式 ================= */
 @media (max-width:620px){
   .head-row{flex-direction:column;align-items:flex-start;}
@@ -1175,8 +1219,31 @@ footer.site{
     <div class="modal-content" id="modalContent"></div>
   </div>
 </div>
-  
+
+  <!-- ================= 回到顶部 ================= -->
+<button id="backTop" title="回到顶部">↑</button>
 <script>
+
+  /* ================= 回到顶部 ================= */
+(function(){
+  var btn = document.getElementById('backTop');
+  if(!btn) return;
+
+  function toggleBtn(){
+    if(window.scrollY > 400){
+      btn.classList.add('show');
+    }else{
+      btn.classList.remove('show');
+    }
+  }
+
+  window.addEventListener('scroll', toggleBtn, { passive:true });
+  toggleBtn();
+
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+})();
 /* ================= 时钟 ================= */
 (function(){
   var el = document.getElementById('clock');
