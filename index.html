@@ -915,7 +915,6 @@ footer.site{
       <a href="#works">ポートフォリオ ／ 个人作品</a>
       <a href="#oc">OC コレクション ／ OC 集</a>
       <a href="#contact">お問い合わせ ／ 联系方式</a>
-      <a href="#guestbook">ゲストブック ／ 留言板</a>
     </nav>
   </header>
 
@@ -1078,52 +1077,39 @@ footer.site{
   </div>
 </section>
 
-  <!-- ================= 联系方式 ================= -->
-<!-- ================= 联系方式 ================= -->
-<section id="contact">
-  <div class="sec-head">
-    <span class="jp">お問い合わせ</span>
-    <span class="cn">联 系 方 式</span>
-  </div>
-  <div class="sec-body">
-    <div class="contact-list">
-      <ul>
-        <li><b>メール</b>3774636162@qq.com</li>
-        <li><b>QQ</b>3774636162</li>
-        <li><b>LOFTER</b><a href="https://fancheyu20.lofter.com/" target="_blank" rel="noopener noreferrer">经常翻车的鱼</a></li>
-        <li><b>GitHub</b><a href="https://github.com/fancheyu0726" target="_blank" rel="noopener noreferrer">fancheyu0726</a></li>
-      </ul>
-      <p style="font-size:11.5px;color:#6a5f8c;margin-top:12px;line-height:1.8">
-        ※ 想联系的话直接加 QQ：3774636162<br>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 留言板 ================= -->
-<section id="guestbook">
-  <div class="sec-head">
-    <span class="jp">ゲストブック</span>
-    <span class="cn">留 言 板</span>
-  </div>
-  <div class="sec-body">
-    <p style="font-size:12.5px;color:#9c8fc0;margin:0 0 12px;letter-spacing:.06em;">
-      ✦ 欢迎留言 ✦ 也可以直接访问 <a href="https://www3.cbox.ws/box/?boxid=3561421&boxtag=VwR91a" target="_blank" rel="noopener noreferrer">独立留言板</a> ✦
-    </p>
-
-    <iframe 
-      src="https://www3.cbox.ws/box/?boxid=3561421&boxtag=VwR91a" 
-      width="100%" 
-      height="450" 
-      allowtransparency="yes" 
-      allow="autoplay" 
-      frameborder="0" 
-      marginheight="0" 
-      marginwidth="0" 
-      scrolling="auto"
-      style="border:1px solid #5a4488;display:block;background:transparent;">
-    </iframe>
-  </div>
+<section id="contact">    
+<div class="sec-head">      
+<span class="jp">お問い合わせ</span>      
+<span class="cn">联 系 方 式</span>    
+</div>    
+<div class="sec-body">      
+<div class="contact-grid">
+        <div class="contact-list">          
+<ul>            
+<li><b>メール</b>3774636162@qq.com</li>            
+<li><b>QQ</b>3774636162</li>            
+<li><b>LOFTER</b><a href="https://fancheyu20.lofter.com/" target="_blank" rel="noopener noreferrer">经常翻车的鱼</a></li>            
+<li><b>GitHub</b><a href="https://github.com/fancheyu0726" target="_blank" rel="noopener noreferrer">fancheyu0726</a></li>            
+<li><b>留言板</b>→ 请用右边的表单</li>          
+</ul>          
+<p style="font-size:11.5px;color:#6a5f8c;margin-top:12px;line-height:1.8">
+            ※ 这个留言目前就图一乐，想联系的话直接加我的联系方式就好了（QQ：3774636162）<br>          
+</p>        
+</div>
+        <div class="form-col">          
+<form id="msg-form">            
+<label for="nm">お名前 ／ 你的名字</label>            
+<input type="text" id="nm" placeholder="请填写名字…" required>            
+<label for="msg">メッセージ ／ 留言内容</label>            
+<textarea id="msg" rows="4" placeholder="想说的话…" required></textarea>            
+<div style="margin-top:12px">              
+<button type="submit" class="btn">送 信 す る</button>            
+</div>            
+<div id="msg-out"></div>          
+</form>        
+</div>
+      </div>    
+</div>  
 </section>
 
   <!-- ================= 页脚 ================= -->
