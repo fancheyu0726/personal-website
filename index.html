@@ -1132,10 +1132,12 @@ footer.site{
   <footer class="site">
     <div class="log">
       <b>【更新履歴】（顺序为从上往下）</b><br>
-      网页html完成
-      个人作品展示修改完成
-      作品详情
-      oc界面
+      网页html完成 <br>
+      个人作品展示修改完成 <br>
+      作品详情 <br>
+      oc界面 <br>
+      小说查看 <br>
+      留言板
     </div>
 <hr>
     <div class="badges">
@@ -1235,20 +1237,6 @@ footer.site{
     var a = Math.atan2(dy, dx);
     var d = Math.min(9, Math.hypot(dx, dy) / 14);
     pupil.style.transform = 'translate(' + (Math.cos(a)*d) + 'px,' + (Math.sin(a)*d) + 'px)';
-  });
-})();
-
-/* ================= 留言表单（假的） ================= */
-(function(){
-  var form = document.getElementById('msg-form');
-  var out  = document.getElementById('msg-out');
-  if(!form) return;
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    out.textContent = '…送信中…';
-    setTimeout(function(){
-      out.innerHTML = '✦ 送信完了！ ✦ 不过……这里好像没有人收信。';
-    }, 900);
   });
 })();
 
