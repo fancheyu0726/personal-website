@@ -860,6 +860,59 @@ footer.site{
 @media (max-width:620px){
   #backTop{ right:14px; bottom:14px; width:38px; height:38px; font-size:17px; }
 }
+
+  /* ================= 友情链接 ================= */
+.links-table{
+  width:100%;
+  font-size:13px;
+}
+.link-row{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  padding:9px 4px;
+  border-bottom:1px dotted #4a3a6b;
+  transition:background .2s;
+}
+.link-row:last-child{
+  border-bottom:none;
+}
+.link-row:hover{
+  background:rgba(255,142,203,.06);
+}
+.link-name{
+  flex:0 0 auto;
+  color:#ffd9f2;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+.link-url{
+  flex:1 1 auto;
+  text-align:right;
+  font-size:12px;
+  word-break:break-all;
+}
+.link-url a{
+  color:#8fd8ff;
+  text-decoration:none;
+}
+.link-url a:hover{
+  color:#12001a;
+  background:#ff3ca6;
+  text-decoration:none;
+}
+
+/* 手机端：名字和链接换行显示 */
+@media (max-width:520px){
+  .link-row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:3px;
+  }
+  .link-url{
+    text-align:left;
+  }
+}
   
 /* ================= 响应式 ================= */
 @media (max-width:620px){
@@ -1172,6 +1225,32 @@ footer.site{
   </div>
 </section>
 
+<!-- ================= 友情链接 ================= -->
+<section id="links">
+  <div class="sec-head">
+    <span class="jp">リンク</span>
+    <span class="cn">友 情 链 接</span>
+  </div>
+  <div class="sec-body">
+    <div class="links-table">
+
+      <div class="link-row">
+        <span class="link-name">晴川</span>
+        <small class="link-note">约建模和渲染可以放心来！！</small>
+        <span class="link-url"><a href=" https://xhslink.cn/o/8vVdmNYKBaA" target="_blank" rel="noopener noreferrer">小红书</a></span>
+        <span class="link-url">QQ：3586962368</span>
+      </div>
+
+      <div class="link-row">
+        <span class="link-name">月殇</span>
+        <small class="link-note">↑此人会画点像素小画</small>
+        <span class="link-url">QQ：2517977534</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+  
   <!-- ================= 页脚 ================= -->
   <footer class="site">
     <div class="log">
@@ -1181,7 +1260,8 @@ footer.site{
       作品详情 <br>
       oc界面 <br>
       小说查看 <br>
-      留言板
+      留言板<br>
+      友链
     </div>
 <hr>
     <div class="badges">
