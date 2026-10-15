@@ -1148,10 +1148,10 @@ footer.site{
       <div class="badge pink">夢の中<br>から</div>
     </div>
 
-    <div class="counter-box">
-      <em>YOU ARE VISITOR No.</em>
-      <span id="counter">00000000</span>
-    </div>
+<div class="counter-box">
+  <em>YOU ARE VISITOR No.</em>
+  <span id="busuanzi_value_site_uv">----</span>
+</div>
 
     <div class="copy">
       © 2025 夢の記録 ／ わたしの小部屋<br>
@@ -1189,20 +1189,6 @@ footer.site{
   tick();
   setInterval(tick, 1000);
 })();
-
-/* ================= 访客计数器 ================= */
-(function(){
-  var n = 0;
-  try{
-    n = parseInt(localStorage.getItem('dream_visits') || '0', 10) || 0;
-    n++;
-    localStorage.setItem('dream_visits', String(n));
-  }catch(e){
-    n = Math.floor(Math.random()*900) + 100;
-  }
-  document.getElementById('counter').textContent = String(n).padStart(8,'0');
-})();
-
 
 
 /* ================= 鼠标拖尾 ================= */
@@ -1655,5 +1641,6 @@ if(d.schedule)    html += renderField('【行程】', d.schedule);
   });
 })();
 </script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
