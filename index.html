@@ -945,45 +945,140 @@ footer.site{
   100% { transform: translateX(110vw) scale(1.5); opacity: 0; }
 }
 
-/* 天使核 */
+/* ================= 极致的 天使核 ================= */
 body.angel-mode {
-  background: #fffaf0 !important;
-  color: #8a6da0 !important;
+  background: #fffdf8 !important;
+  color: #6b5a45 !important;
+  transition: all 1.5s ease; 
 }
 body.angel-mode #bg {
-  background: radial-gradient(circle at center, #ffffff 0%, #ffd6f0 40%, #b0e0e6 100%) !important;
+  background:
+    radial-gradient(circle at 50% 0%, #ffffff 0%, transparent 60%),
+    radial-gradient(circle at 50% 100%, #fffbeb 0%, transparent 70%),
+    linear-gradient(180deg, #fff9e6 0%, #ffffff 100%) !important;
+  opacity: 1 !important;
 }
-body.angel-mode .orb { filter: blur(80px); opacity: 0.6; background: #fff !important; }
+body.angel-mode .orb {
+  background: radial-gradient(circle, #ffffff 0%, #fff6d8 50%, transparent 100%) !important;
+  filter: blur(90px) !important;
+  opacity: 0.9 !important;
+  animation: holyPulse 4s infinite alternate !important;
+}
+@keyframes holyPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
 body.angel-mode header.site, 
 body.angel-mode section, 
 body.angel-mode footer.site,
-body.angel-mode .modal-box {
-  background: rgba(255,255,255,0.85) !important;
-  border-color: #ffb6c1 !important;
-  box-shadow: 0 0 30px rgba(255,182,193,0.8), inset 0 0 20px rgba(255,255,255,0.9) !important;
+body.angel-mode .modal-box,
+body.angel-mode .work,
+body.angel-mode .oc-card,
+body.angel-mode .link-row {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 2px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 
+    0 0 20px rgba(255, 240, 200, 0.8), 
+    inset 0 0 20px rgba(255, 255, 255, 0.8),
+    0 10px 30px rgba(200, 170, 100, 0.1) !important;
+}
+
+body.angel-mode .m-details {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-color: #fff0c0 !important;
+}
+body.angel-mode .m-tags span {
+  color: #b8860b !important;
+  border-color: #ffd700 !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+body.angel-mode h1.title { 
+  color: #fff !important; 
+  text-shadow: 0 0 10px #fff, 0 0 20px #ffd700, 0 0 40px #ffd700 !important; 
 }
 body.angel-mode .sec-head {
-  background: linear-gradient(90deg, #ffd6f0, #fff) !important;
-  border-color: #ffb6c1 !important;
+  background: linear-gradient(90deg, rgba(255,215,0,0.1), rgba(255,255,255,0)) !important;
+  border-color: #ffe4b5 !important;
 }
-body.angel-mode .sec-head .jp { color: #ff69b4 !important; text-shadow: 0 0 8px #fff !important; }
-body.angel-mode .sec-head .cn { color: #87ceeb !important; }
-body.angel-mode h1.title { color: #fff; text-shadow: 0 0 15px #ffb6c1, 0 0 30px #ff69b4 !important; }
-body.angel-mode .work, body.angel-mode .oc-card, body.angel-mode .link-row {
-  background: rgba(255,255,255,0.9) !important;
-  border-color: #b0e0e6 !important;
+body.angel-mode .sec-head .jp { 
+  color: #d4af37 !important; 
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5) !important; 
 }
-body.angel-mode .work-body h3, body.angel-mode .oc-name, body.angel-mode .link-name { color: #ff69b4 !important; }
-body.angel-mode .work-body p, body.angel-mode .oc-tag, body.angel-mode .link-url { color: #87ceeb !important; }
-body.angel-mode .intro-text { background: rgba(255,255,255,0.9) !important; border-left-color: #ff69b4 !important; color: #8a6da0 !important; }
-body.angel-mode table.info th { color: #87ceeb !important; border-color: #ffb6c1 !important; }
-body.angel-mode table.info td { color: #8a6da0 !important; border-color: #ffb6c1 !important; }
-body.angel-mode .m-desc, body.angel-mode .m-meta { color: #8a6da0 !important; }
-body.angel-mode .m-details { background: rgba(255,250,240,0.9) !important; border-color: #87ceeb !important; }
-body.angel-mode .m-details summary { color: #ff69b4 !important; }
-body.angel-mode .m-tags span { color: #ff69b4 !important; border-color: #ffb6c1 !important; background: #fff !important; }
-body.angel-mode .eye { background: radial-gradient(circle at 50% 42%,#fff 0%,#ffd6f0 58%,#b0e0e6 100%); }
-body.angel-mode .pupil { background: radial-gradient(circle at 38% 34%,#ff69b4,#fff 72%); box-shadow: 0 0 9px #ff69b4; }
+body.angel-mode .sec-head .cn { 
+  color: #b8860b !important; 
+}
+
+body.angel-mode .intro-text { 
+  background: rgba(255, 255, 255, 0.7) !important; 
+  border-left: 4px solid #ffd700 !important; 
+  color: #6b5a45 !important; 
+}
+body.angel-mode table.info th { 
+  color: #b8860b !important; 
+  border-color: #ffe4b5 !important; 
+}
+body.angel-mode table.info td { 
+  color: #6b5a45 !important; 
+  border-color: #ffe4b5 !important; 
+}
+body.angel-mode .work-body h3, 
+body.angel-mode .oc-name, 
+body.angel-mode .link-name { 
+  color: #d4af37 !important; 
+  text-shadow: 0 0 5px rgba(255,255,255,0.8);
+}
+body.angel-mode .work-body p, 
+body.angel-mode .oc-tag, 
+body.angel-mode .link-url,
+body.angel-mode .m-desc, 
+body.angel-mode .m-meta { 
+  color: #6b5a45 !important; 
+}
+body.angel-mode .m-details summary {
+  color: #d4af37 !important;
+}
+
+body.angel-mode .eye { 
+  background: #fff !important; 
+  border-color: #ffd700 !important; 
+  box-shadow: 0 0 20px #ffd700, inset 0 0 10px #ffd700 !important; 
+}
+body.angel-mode .pupil { 
+  background: #ffd700 !important; 
+  box-shadow: 0 0 15px #fff !important; 
+}
+body.angel-mode .eye::after {
+  background: rgba(255, 255, 255, 0.8) !important; 
+}
+
+/* 隐藏暗角，换成发光边缘 */
+body.angel-mode .vignette {
+  box-shadow: inset 0 0 150px rgba(255, 255, 255, 0.8), inset 0 0 50px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* 增加一层全屏的圣光滤镜（丁达尔效应） */
+body.angel-mode::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: 
+    linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.4) 55%, transparent 60%),
+    linear-gradient(-45deg, transparent 40%, rgba(255,250,220,0.3) 45%, rgba(255,250,220,0.6) 50%, rgba(255,250,220,0.3) 55%, transparent 60%);
+  background-size: 200% 200%;
+  animation: godRays 8s infinite linear;
+  mix-blend-mode: overlay;
+}
+@keyframes godRays {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+/* ================= 天使核结束 ================= */
 
 /* 失败眼睛 */
 .eye-effect {
