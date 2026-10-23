@@ -1424,6 +1424,26 @@ body.angel-mode .pupil { background: radial-gradient(circle at 38% 34%,#ff69b4,#
 
   <!-- ================= 回到顶部 ================= -->
 <button id="backTop" title="回到顶部">↑</button>
+
+ <!-- ================= 骰子弹窗 ================= -->
+<div id="dice-modal" class="modal">  
+<div class="modal-backdrop" onclick="closeDiceModal()"></div>  
+<div class="modal-box" style="max-width:400px;text-align:center;">    
+<button class="modal-close" onclick="closeDiceModal()">×</button>    
+<div class="modal-content">      
+<h2 style="color:#ffd86b;">命运の骰子</h2>      
+<p style="font-size:12.5px;color:#9c8fc0;margin-bottom:20px;">向鸽子之神祈祷，掷出1-100吧……</p>      
+<div id="dice-display" style="font-size:60px; font-family:'Courier New',monospace; color:#fff; text-shadow:0 0 20px #ff3ca6; margin:20px 0; transition: transform 0.1s; font-weight:bold;">?</div>      
+<button class="btn" id="roll-btn" style="font-size:16px; padding:10px 30px; letter-spacing:4px;">R O L L</button>      
+<div id="dice-result" style="margin-top:15px;font-size:14px;height:20px;color:#8affc1;font-weight:bold;letter-spacing:1px;"></div>    
+</div>  
+</div>
+</div>
+<!-- 鸽子、眼睛、跳脸特效层 -->
+<div id="pigeon-layer" style="position:fixed;inset:0;pointer-events:none;z-index:99990;overflow:hidden;"></div>
+<div id="eye-layer" style="position:fixed;inset:0;pointer-events:none;z-index:99990;overflow:hidden;"></div>
+<div id="jumpscare-layer" style="position:fixed;inset:0;z-index:99999;display:none;background:#000;pointer-events:none;align-items:center;justify-content:center;overflow:hidden;"></div>
+  
 <script>
 
   /* ================= 回到顶部 ================= */
@@ -2063,24 +2083,5 @@ if(d.schedule)    html += renderField('【行程】', d.schedule);
     
 </script>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  <!-- ================= 骰子弹窗 ================= -->
-<div id="dice-modal" class="modal">
-  <div class="modal-backdrop" onclick="closeDiceModal()"></div>
-  <div class="modal-box" style="max-width:400px;text-align:center;">
-    <button class="modal-close" onclick="closeDiceModal()">×</button>
-    <div class="modal-content">
-      <h2 style="color:#ffd86b;">命运の骰子</h2>
-      <p style="font-size:12.5px;color:#9c8fc0;margin-bottom:20px;">向鸽子之神祈祷，掷出1-100吧……</p>
-      <div id="dice-display" style="font-size:60px; font-family:'Courier New',monospace; color:#fff; text-shadow:0 0 20px #ff3ca6; margin:20px 0; transition: transform 0.1s; font-weight:bold;">?</div>
-      <button class="btn" id="roll-btn" style="font-size:16px; padding:10px 30px; letter-spacing:4px;">R O L L</button>
-      <div id="dice-result" style="margin-top:15px;font-size:14px;height:20px;color:#8affc1;font-weight:bold;letter-spacing:1px;"></div>
-    </div>
-  </div>
-</div>
-
-<!-- 鸽子、眼睛、跳脸特效层 -->
-<div id="pigeon-layer" style="position:fixed;inset:0;pointer-events:none;z-index:99990;overflow:hidden;"></div>
-<div id="eye-layer" style="position:fixed;inset:0;pointer-events:none;z-index:99990;overflow:hidden;"></div>
-<div id="jumpscare-layer" style="position:fixed;inset:0;z-index:99999;display:none;background:#000;pointer-events:none;align-items:center;justify-content:center;overflow:hidden;"></div>
-</body>
+  </body>
 </html>
