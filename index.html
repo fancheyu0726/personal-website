@@ -945,9 +945,9 @@ footer.site{
   100% { transform: translateX(110vw) scale(1.5); opacity: 0; }
 }
 
-/* ================= 真正的 天使核（Angelcore） ================= */
+/* ================= 极致的 天使核（Angelcore） ================= */
 
-/* 1. 基础底色与圣光射线 */
+/* 1. 基础底色与圣光 */
 body.angel-mode {
   background: #fdfbf7 !important;
   color: #5a4b41 !important;
@@ -965,22 +965,34 @@ body.angel-mode .orb {
   opacity: 0.8 !important;
 }
 
-/* 注入丁达尔圣光（从天而降的光束） */
+/* ================= 干掉原遮罩，换成丁达尔圣光 ================= */
+body.angel-mode .scanlines,
+body.angel-mode .noise {
+  display: none !important; /* 隐藏扫描线和噪点 */
+}
+body.angel-mode .vignette {
+  /* 原来的暗角变成边缘耀眼的圣光溢出 */
+  box-shadow: inset 0 0 150px rgba(255, 255, 255, 1), inset 0 0 250px rgba(255, 215, 0, 0.4) !important;
+  background: radial-gradient(circle at center, transparent 40%, rgba(255,250,220,0.3) 100%) !important;
+}
+
+/* 注入全屏旋转的丁达尔圣光（从天而降的光束） */
 body.angel-mode::before {
   content: '';
   position: fixed;
   inset: -50%;
   pointer-events: none;
-  z-index: -1;
+  z-index: 9995; /* 在背景之上，内容之下 */
   background: repeating-conic-gradient(
     from 0deg at 50% 0%,
     rgba(255, 255, 255, 0) 0deg,
-    rgba(255, 255, 255, 0) 10deg,
-    rgba(255, 255, 255, 0.6) 12deg,
-    rgba(255, 255, 255, 0) 14deg
+    rgba(255, 255, 255, 0) 15deg,
+    rgba(255, 250, 220, 0.8) 20deg,
+    rgba(255, 255, 255, 0) 25deg
   );
-  animation: holyRays 30s linear infinite;
-  opacity: 0.6;
+  animation: holyRays 40s linear infinite;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
 }
 @keyframes holyRays {
   0% { transform: rotate(0deg); }
@@ -992,15 +1004,14 @@ body.angel-mode h1.title {
   font-family: "Georgia", "Times New Roman", serif !important;
   color: #fff !important;
   text-shadow: 0 0 10px #fff, 0 0 20px #ffd700, 0 0 40px #ffd700, 2px 2px 0 #c5a059 !important;
-  animation: none !important; /* 关掉原来的故障闪烁 */
+  animation: none !important; /* 关掉故障闪烁 */
   letter-spacing: 0.1em !important;
 }
-/* 标题上方生成一个悬浮的光环 */
 body.angel-mode h1.title::before {
   content: '';
   position: absolute;
   top: -25px;
-  left: 20%;
+  left: 10%;
   width: 60px;
   height: 12px;
   border-radius: 50%;
@@ -1014,15 +1025,26 @@ body.angel-mode h1.title::before {
   100% { transform: translateY(-8px); box-shadow: 0 0 40px #ffd700, inset 0 0 20px #fff; }
 }
 
-/* 3. 导航栏：变成白鸽与云朵的质感 */
-body.angel-mode nav.main {
-  gap: 12px;
+/* ================= 跑马灯：变成神圣卷轴 ================= */
+body.angel-mode .marquee {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid #ffd700 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3) !important;
+  color: #b8860b !important; /* 深金色 */
+  text-shadow: 0 0 5px #fff !important;
+  font-family: "Georgia", serif !important;
+  font-style: italic;
+  margin-top: 18px;
 }
+
+/* 3. 导航栏：变成白鸽与云朵的质感 */
+body.angel-mode nav.main { gap: 12px; }
 body.angel-mode nav.main a {
   background: rgba(255, 255, 255, 0.8) !important;
   border: 1px solid rgba(255, 215, 0, 0.6) !important;
   color: #b8860b !important;
-  border-radius: 20px !important; /* 圆润的云朵感 */
+  border-radius: 20px !important; 
   font-family: "Georgia", serif;
   font-weight: bold;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.2) !important;
@@ -1115,30 +1137,33 @@ body.angel-mode .eye::after {
   background: rgba(255, 255, 255, 0.9) !important; 
 }
 
-/* 8. 全屏飘落的羽毛（利用伪元素创造氛围感） */
-body.angel-mode #trailLayer::after {
-  content: '🪶';
-  position: fixed;
-  top: -50px;
-  left: 10%;
-  font-size: 24px;
-  opacity: 0.6;
-  filter: drop-shadow(0 0 5px #fff);
-  animation: fall1 8s linear infinite;
-  pointer-events: none;
-}
-@keyframes fall1 {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.8; }
-  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-}
-/* 我们再借用一下原本的拖尾层来生成更多羽毛（通过CSS动画） */
+/* 8. 羽毛拖尾 */
 body.angel-mode .trail {
   color: #fff !important;
   text-shadow: 0 0 10px #ffd700 !important;
   animation: trailFade 1.5s ease-out forwards !important;
 }
+  /* ================= 9. 神圣的鼠标指针 ================= */
+/* 全局默认：发光的金色四芒星 */
+body.angel-mode {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 2 L18 14 L30 16 L18 18 L16 30 L14 18 L2 16 L14 14 Z" fill="%23ffd700" stroke="%23ffffff" stroke-width="1.5" filter="drop-shadow(0px 0px 3px %23ffd700)"/></svg>') 16 16, auto !important;
+}
 
+/* 悬停在按钮、链接、作品卡片上时：变成发光的白鸽翅膀/更大光晕 */
+body.angel-mode a,
+body.angel-mode button,
+body.angel-mode .work,
+body.angel-mode .oc-card,
+body.angel-mode .m-details summary,
+body.angel-mode nav.main a {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="%23ffffff" stroke="%23ffd700" stroke-width="2" filter="drop-shadow(0px 0px 6px %23ffd700)"/></svg>') 16 16, pointer !important;
+}
+
+/* 隐藏原本身体上的十字准星 */
+body.angel-mode * {
+  cursor: inherit;
+}
+  
 /* 失败眼睛 */
 .eye-effect {
   position: absolute;
