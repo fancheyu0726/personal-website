@@ -1962,7 +1962,7 @@ if(d.schedule)    html += renderField('【行程】', d.schedule);
 })();
 
     /* ================= 骰子彩蛋逻辑 ================= */
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   var trigger = document.getElementById('dice-trigger');
   var modal = document.getElementById('dice-modal');
   var display = document.getElementById('dice-display');
@@ -2079,7 +2079,7 @@ if(d.schedule)    html += renderField('【行程】', d.schedule);
       jumpscareLayer.innerHTML = '';
     }, 1600);
   }
-})();
+});
     
 </script>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
