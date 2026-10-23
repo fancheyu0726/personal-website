@@ -913,6 +913,114 @@ footer.site{
     text-align:left;
   }
 }
+
+  /* ================= 骰子与彩蛋特效 ================= */
+@keyframes diceShake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.rolling { animation: diceShake 0.1s infinite; }
+
+/* 鸽子飞过 */
+.pigeon {
+  position: absolute;
+  font-size: 24px;
+  animation: fly linear forwards;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+  opacity: 0;
+}
+@keyframes fly {
+  0% { transform: translateX(-100px) scale(0.5); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(110vw) scale(1.5); opacity: 0; }
+}
+
+/* 天使核 */
+body.angel-mode {
+  background: #fffaf0 !important;
+  color: #8a6da0 !important;
+}
+body.angel-mode #bg {
+  background: radial-gradient(circle at center, #ffffff 0%, #ffd6f0 40%, #b0e0e6 100%) !important;
+}
+body.angel-mode .orb { filter: blur(80px); opacity: 0.6; background: #fff !important; }
+body.angel-mode header.site, 
+body.angel-mode section, 
+body.angel-mode footer.site,
+body.angel-mode .modal-box {
+  background: rgba(255,255,255,0.85) !important;
+  border-color: #ffb6c1 !important;
+  box-shadow: 0 0 30px rgba(255,182,193,0.8), inset 0 0 20px rgba(255,255,255,0.9) !important;
+}
+body.angel-mode .sec-head {
+  background: linear-gradient(90deg, #ffd6f0, #fff) !important;
+  border-color: #ffb6c1 !important;
+}
+body.angel-mode .sec-head .jp { color: #ff69b4 !important; text-shadow: 0 0 8px #fff !important; }
+body.angel-mode .sec-head .cn { color: #87ceeb !important; }
+body.angel-mode h1.title { color: #fff; text-shadow: 0 0 15px #ffb6c1, 0 0 30px #ff69b4 !important; }
+body.angel-mode .work, body.angel-mode .oc-card, body.angel-mode .link-row {
+  background: rgba(255,255,255,0.9) !important;
+  border-color: #b0e0e6 !important;
+}
+body.angel-mode .work-body h3, body.angel-mode .oc-name, body.angel-mode .link-name { color: #ff69b4 !important; }
+body.angel-mode .work-body p, body.angel-mode .oc-tag, body.angel-mode .link-url { color: #87ceeb !important; }
+body.angel-mode .intro-text { background: rgba(255,255,255,0.9) !important; border-left-color: #ff69b4 !important; color: #8a6da0 !important; }
+body.angel-mode table.info th { color: #87ceeb !important; border-color: #ffb6c1 !important; }
+body.angel-mode table.info td { color: #8a6da0 !important; border-color: #ffb6c1 !important; }
+body.angel-mode .m-desc, body.angel-mode .m-meta { color: #8a6da0 !important; }
+body.angel-mode .m-details { background: rgba(255,250,240,0.9) !important; border-color: #87ceeb !important; }
+body.angel-mode .m-details summary { color: #ff69b4 !important; }
+body.angel-mode .m-tags span { color: #ff69b4 !important; border-color: #ffb6c1 !important; background: #fff !important; }
+body.angel-mode .eye { background: radial-gradient(circle at 50% 42%,#fff 0%,#ffd6f0 58%,#b0e0e6 100%); }
+body.angel-mode .pupil { background: radial-gradient(circle at 38% 34%,#ff69b4,#fff 72%); box-shadow: 0 0 9px #ff69b4; }
+
+/* 失败眼睛 */
+.eye-effect {
+  position: absolute;
+  font-size: 40px;
+  opacity: 0;
+  animation: eyePop 3s ease forwards;
+  filter: drop-shadow(0 0 15px #ff0000);
+  transform-origin: center;
+}
+@keyframes eyePop {
+  0% { opacity: 0; transform: scale(0.2) rotate(-10deg); }
+  20% { opacity: 1; transform: scale(1) rotate(0deg); }
+  80% { opacity: 1; transform: scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: scale(1.5) rotate(10deg); }
+}
+
+/* 大失败跳脸 */
+.jumpscare-box {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: zoomShake 0.1s infinite, jumpIn 0.2s ease;
+}
+@keyframes zoomShake {
+  0% { transform: scale(1.1) translate(3px, 3px); }
+  50% { transform: scale(1.15) translate(-3px, -3px); }
+  100% { transform: scale(1.1) translate(3px, -3px); }
+}
+@keyframes jumpIn {
+  0% { transform: scale(3); opacity: 0; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
   
 /* ================= 响应式 ================= */
 @media (max-width:620px){
@@ -1058,7 +1166,7 @@ footer.site{
             こんいちは～这里是翻车鱼，一个完全没有任何才能的大学普通日语专业女子！<br>
             爱好是学一切感兴趣的东西，但很难说会坚持下来，说不定哪天有兴趣了就会研究很久某一个东西。<br>
             这里会存放一些我的个人作品，包括但不限于<span class="strange">写了一半的小说</span>、<span class="strange">目前正在制作的twine小游戏</span>、以及<span class="strange">星露谷物语的模组</span>...？<br>
-            后期还会放一点oc设定集什么的，谁知道呢？（<span class="blink">咕咕</span><br>
+            后期还会放一点oc设定集什么的，谁知道呢？（<span class="blink" id="dice-trigger" style="cursor:pointer; text-decoration:underline dotted;">咕咕</span><br>
           </p>
         </div>
       </div>
@@ -1832,7 +1940,147 @@ if(d.schedule)    html += renderField('【行程】', d.schedule);
     });
   });
 })();
+
+    /* ================= 骰子彩蛋逻辑 ================= */
+(function(){
+  var trigger = document.getElementById('dice-trigger');
+  var modal = document.getElementById('dice-modal');
+  var display = document.getElementById('dice-display');
+  var btn = document.getElementById('roll-btn');
+  var resultText = document.getElementById('dice-result');
+  var pigeonLayer = document.getElementById('pigeon-layer');
+  var eyeLayer = document.getElementById('eye-layer');
+  var jumpscareLayer = document.getElementById('jumpscare-layer');
+  
+  if(!trigger || !modal) return;
+
+  trigger.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    display.textContent = '?';
+    display.classList.remove('rolling');
+    resultText.textContent = '';
+    btn.disabled = false;
+  });
+
+  window.closeDiceModal = function(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  btn.addEventListener('click', function(){
+    btn.disabled = true;
+    resultText.textContent = '';
+    display.classList.add('rolling');
+
+    var count = 0;
+    var interval = setInterval(function(){
+      display.textContent = Math.floor(Math.random() * 100) + 1;
+      count++;
+      if(count > 25) { // 滚动 25 次停下
+        clearInterval(interval);
+        display.classList.remove('rolling');
+        
+        var finalNum = Math.floor(Math.random() * 100) + 1;
+        display.textContent = finalNum;
+        
+        if(finalNum <= 3) {
+          resultText.style.color = '#ffd86b';
+          resultText.textContent = '大成功！鸽子之神降临了！';
+          spawnPigeons();
+        } else if(finalNum <= 70) {
+          resultText.style.color = '#8affc1';
+          resultText.textContent = '成功。天使的光辉笼罩了你。';
+          document.body.classList.add('angel-mode');
+        } else if(finalNum <= 96) {
+          resultText.style.color = '#ff6ba8';
+          resultText.textContent = '失败。你感觉到有什么在看着你……';
+          spawnEyes();
+        } else {
+          resultText.style.color = '#ff0000';
+          resultText.textContent = '大失败。';
+          jumpscare();
+        }
+      }
+    }, 50);
+  });
+
+  // 大成功：鸽子飞过
+  function spawnPigeons() {
+    var count = 40;
+    for(var i=0; i<count; i++){
+      (function(i){
+        setTimeout(function(){
+          var p = document.createElement('div');
+          p.className = 'pigeon';
+          p.textContent = '🕊️';
+          p.style.top = Math.random() * 100 + 'vh';
+          var duration = 1 + Math.random() * 2;
+          p.style.animationDuration = duration + 's';
+          p.style.left = '-50px';
+          p.style.fontSize = (16 + Math.random() * 40) + 'px';
+          pigeonLayer.appendChild(p);
+          setTimeout(function(){ p.remove(); }, duration * 1000);
+        }, Math.random() * 2000);
+      })(i);
+    }
+  }
+
+  // 失败：出现眼睛
+  function spawnEyes() {
+    eyeLayer.innerHTML = '';
+    var count = 8 + Math.floor(Math.random() * 10);
+    for(var i=0; i<count; i++){
+      var e = document.createElement('div');
+      e.className = 'eye-effect';
+      e.textContent = '👁️';
+      e.style.left = Math.random() * 90 + 'vw';
+      e.style.top = Math.random() * 90 + 'vh';
+      e.style.animationDelay = (Math.random() * 1.5) + 's';
+      eyeLayer.appendChild(e);
+      setTimeout(function(el){ return function(){ el.remove(); }; }(e), 5000);
+    }
+  }
+
+  // 大失败：跳脸
+  function jumpscare() {
+    jumpscareLayer.style.display = 'flex';
+    // 纯 CSS/Emoji 组成的诡异大脸，不依赖外部图片
+    jumpscareLayer.innerHTML = `
+      <div class="jumpscare-box">
+         <div style="font-size:50vw; line-height:1; color:#ff0000; filter:drop-shadow(0 0 80px red); text-shadow: 15px 15px 0 #300;">👁️</div>
+         <div style="position:absolute; font-size:15vw; color:#fff; font-family:serif; font-weight:bold; transform: rotate(-15deg); text-shadow: 5px 5px 0 #ff0000, -5px -5px 0 #000; letter-spacing:10px;">W A K E</div>
+      </div>
+    `;
+    
+    setTimeout(function(){
+      jumpscareLayer.style.display = 'none';
+      jumpscareLayer.innerHTML = '';
+    }, 1600);
+  }
+})();
+    
 </script>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- ================= 骰子弹窗 ================= -->
+<div id="dice-modal" class="modal">
+  <div class="modal-backdrop" onclick="closeDiceModal()"></div>
+  <div class="modal-box" style="max-width:400px;text-align:center;">
+    <button class="modal-close" onclick="closeDiceModal()">×</button>
+    <div class="modal-content">
+      <h2 style="color:#ffd86b;">命运の骰子</h2>
+      <p style="font-size:12.5px;color:#9c8fc0;margin-bottom:20px;">向鸽子之神祈祷，掷出1-100吧……</p>
+      <div id="dice-display" style="font-size:60px; font-family:'Courier New',monospace; color:#fff; text-shadow:0 0 20px #ff3ca6; margin:20px 0; transition: transform 0.1s; font-weight:bold;">?</div>
+      <button class="btn" id="roll-btn" style="font-size:16px; padding:10px 30px; letter-spacing:4px;">R O L L</button>
+      <div id="dice-result" style="margin-top:15px;font-size:14px;height:20px;color:#8affc1;font-weight:bold;letter-spacing:1px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 鸽子、眼睛、跳脸特效层 -->
+<div id="pigeon-layer" style="position:fixed;inset:0;pointer-events:none;z-index:99990;overflow:hidden;"></div>
+<div id="eye-layer" style="position:fixed;inset:0;pointer-events:none;z-index:99990;overflow:hidden;"></div>
+<div id="jumpscare-layer" style="position:fixed;inset:0;z-index:99999;display:none;background:#000;pointer-events:none;align-items:center;justify-content:center;overflow:hidden;"></div>
 </body>
 </html>
